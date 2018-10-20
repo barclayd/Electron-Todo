@@ -1,0 +1,22 @@
+{
+  "name": "electron-todo",
+  "version": "1.0.0",
+  "description": "Desktop Todo app made using Electron with Node.js",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barclayd/Electron-Todo.git"
+  },
+  "author": "Daniel Barclay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/barclayd/Electron-Todo/issues"
+  },
+  "homepage": "https://github.com/barclayd/Electron-Todo#readme",
+  "dependencies": {
+    "electron": "^3.0.5"
+  }
+}
