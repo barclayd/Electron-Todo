@@ -6,8 +6,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Todo App!</h1>
-<p> Track all of your todos and never wake up to having run out of milk again!</p>
-<script src="./index.js"></script>
+    <h1 class="text-center">Todo List</h1>
+    <p> Track all of your todos and never wake up to having run out of milk again!</p>
+    <div class="container">
+        <div class="columns">
+            <div class="column col-10">
+                <button id="createTodoBtn" type="button" class="btn">
+                    Add a new todo
+                </button>
+                <ul id="todoList"></ul>
+            </div>
+        </div>
+    </div>
+    <script src="./index.js"></script>
 </body>
 </html>
