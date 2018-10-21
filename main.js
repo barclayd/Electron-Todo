@@ -1,4 +1,5 @@
-const { app } = require('electron');
+const path = require('path');
+const { app, ipcMain } = require('electron');
 const DataStore = require('./DataStore');
 const Window = require('./Window');
 
@@ -15,11 +16,45 @@ function main () {
     const mainWindow = new Window({
         file: './renderer/index.html'
     });
+
+    // add to-do window
+    let addTodoWin;
+
+    //initialise main page waith todos
+    mainWindow.once('show', () => {
+        mainWindow.webContents.send('todos', todosData.todos)
+    });
+
+    // create new window for to-do creation
+    ipcMain.on('add-todo-window', () => {
+        if (!addTodoWin) {
+            addTodoWin = new Window({
+                file: path.join('renderer', 'add.html'),
+                width: 400,
+                height: 400,
+                // close main window
+                parent: mainWindow
+            });
+        // clean up windows
+        addTodoWin.on('closed', () => {
+            addTodoWin = null;
+        })
+        }
+    });
+
+    // add to-do to array
+    ipcMain.on('add-todo', (event, todo) => {
+        const updatedTodos = todosData.addTodo(todo).todos;
+        mainWindow.send('todos', updatedTodos);
+    });
+
+    // remove to-do from array
+    ipcMain.on('delete-todo', (event, todo) => {
+        const updatedTodos = todosData.deleteTodo(todo).todos;
+        mainWindow.send('todos', updatedTodos);
+    });
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.on('ready', main);
 
 // Quit when all windows are closed.
