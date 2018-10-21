@@ -1,8 +1,14 @@
 const { app } = require('electron');
+const DataStore = require('./DataStore');
 const Window = require('./Window');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
+
+
+// create new to-do store in local storage
+
+const todosData = new DataStore({ name: 'Todos Main' });
 
 function main () {
     // Create the browser window.
