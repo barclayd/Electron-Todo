@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/barclayd/Electron-Todo#readme",
   "dependencies": {
-    "electron": "^7.2.4",
+    "electron": "^9.4.0",
     "electron-store": "^2.0.0"
   }
 }
